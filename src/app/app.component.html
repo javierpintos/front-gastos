@@ -1,92 +1,22 @@
-<h1>
-  Prueba de endpoint en JAVA
-</h1>
-<hr>
-<h2>Agregar Movimiento</h2>
-
-<form #formContacto="ngForm" (ngSubmit)="onSubmit(newMovimiento)">
-    <label for="descripcion">Descripcion </label> 
-    <input type="text" name="descripcion"/><br/>
-
-    <label for="monto">Monto </label>
-    <input type="text" name="monto"/> <br/>
-   
-    <label for="listaTipoMovimientos"> Tipos de movimientos </label>
-    <select>
-      <option value="null" name="listaTipoMovimientos"> Seleccione un Tipo de Movimiento</option>
-      <option *ngFor="let tipoMovimiento of listTipoMovimiento" value="tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
-    </select><br/>
-
-    <label for="listaSubTipoMovimientos"> Subtipos de movimientos </label>
-    <select>
-      <option value="null" name="listaSubTipoMovimientos"> Seleccione un Subtipo de Movimiento</option>
-      <option *ngFor="let subTipoMovimiento of listSubTipoMovimiento" value="subTipoMovimiento.id">{{subTipoMovimiento.descripcion}}</option>
-    </select><br/>
-    
-    <label for="listaTipoPagos"> Tipos de movimientos </label>
-    <select>
-      <option value="null" name="listaTipoPagos"> Seleccione un Tipo de Pago</option>
-      <option *ngFor="let tipoPago of listTipoPago" value="tipoPago.id">{{tipoPago.descripcion}}</option>
-    </select><br/>
-
-    <label for="listaMonedas"> Tipos de monedas </label>
-    <select>
-      <option value="null" name="listaMonedas"> Seleccione una moneda</option>
-      <option *ngFor="let moneda of listMoneda" value="moneda.id">{{moneda.descripcion}}</option>
-    </select><br/>
-
-    <input type="submit" value="Enviar"/>
-</form>
-
-<hr>
-
-
-
-
-<h2>Crear moneda</h2>
-<form #newMoneda="ngForm" (ngSubmit)="onSubmit(newMoneda)">
-
-  <!--
-  <p>
-		<label for="id">Id</label>
-		<input type="text" name="id" #id="ngModel" [(ngModel)]="newMoneda.id" required/>
-		<span *ngIf="id.touched && !id.valid">
-			El id no es valido
-		</span>
-	</p>-->
-
-	<p>
-		<label for="descripcion">Descripcion</label>
-		<input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="newMoneda.descripcion" required/>
-		<span *ngIf="descripcion.touched && !descripcion.valid">
-			La descripcion no es valida
-		</span>
-  </p>
-  
-  <p>
-		<label for="cotizacion">Cotizacion</label>
-		<input type="text" name="cotizacion" #cotizacion="ngModel" [(ngModel)]="newMoneda.cotizacion" required/>
-		<span *ngIf="cotizacion.touched && !cotizacion.valid">
-			La cotizacion no es valida
-		</span>
-	</p>
-
-	<input type="submit" value="Guardar moneda" [disabled]="!newMoneda.form.valid"> 
-
-</form>
-
-<div *ngIf="moneda_guardada">
-	<h2>El moneda se ha guardado correctamente</h2>
-	<h3>{{moneda_guardada.id}}</h3>
-	<h3>{{moneda_guardada.descripcion}}</h3>
-	<h3>{{moneda_guardada.cotizacion}}</h3>
+<div>
+<h1>  Prueba de endpoint en JAVA</h1>
+<nav>
+    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a>
+    &nbsp;
+    <a [routerLink]="['/movimiento']" [routerLinkActive]="['active']">Movimientos</a>
+    &nbsp;
+    <a [routerLink]="['/moneda']" [routerLinkActive]="['active']">Monedas</a>
+    &nbsp;
+    <a [routerLink]="['/tipoPago']" [routerLinkActive]="['active']">TipoPagos</a>
+    &nbsp;
+    <a [routerLink]="['/tipoMovimiento']" [routerLinkActive]="['active']">TipoMovimientos</a>
+    &nbsp;
+    <a [routerLink]="['/subTipoMovimiento']" [routerLinkActive]="['active']">SubTipoMovimientos</a>
+	</nav>
 	
-</div>
+	<hr>
 
-
-
-
-
+<router-outlet></router-outlet>
 
 <!--
 <h2>Crear usuario reqres.in</h2>
@@ -117,3 +47,5 @@
 	<h3>{{usuario_guardado.name}}</h3>
 	<h4>{{usuario_guardado.job}}</h4>
 </div>-->
+
+</div>

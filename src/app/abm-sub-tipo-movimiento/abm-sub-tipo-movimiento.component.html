@@ -1,0 +1,30 @@
+<h2>Agregar Subtipo de Movimiento</h2>
+<form #formSubTipoMovimiento="ngForm" (ngSubmit)="onSubmit(formSubTipoMovimiento)">
+
+  
+  <p>
+		<label for="id">Id</label>
+		<input type="text" name="id" #id="ngModel" [(ngModel)]="newSubTipoMovimiento.id" required/>
+		<span *ngIf="id.touched && !id.valid">
+			El id no es valido
+		</span>
+	</p>
+
+	<p>
+		<label for="descripcion">Descripcion</label>
+		<input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="newSubTipoMovimiento.descripcion" required/>
+		<span *ngIf="descripcion.touched && !descripcion.valid">
+			La descripcion no es valida
+		</span>
+  </p>
+  
+	<input type="submit" value="Guardar subtipo de movimiento" [disabled]="!formSubTipoMovimiento.form.valid"> 
+
+</form>
+
+<div *ngIf="subTipoMovimiento_guardado">
+        <h2>El Subtipo de pago se ha guardado correctamente</h2>
+        <h2>{{subTipoMovimiento_guardado.id}}</h2>
+        <h2>{{subTipoMovimiento_guardado.descripcion}}</h2>
+        
+</div>

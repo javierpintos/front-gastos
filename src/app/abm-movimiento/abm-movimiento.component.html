@@ -1,0 +1,38 @@
+<div>
+
+<form #formMovimiento="ngForm" (ngSubmit)="onSubmitMovimiento(formMovimiento)">
+        <h2>Agregar Movimiento</h2><br/>
+    <label for="descripcion">Descripcion </label> 
+    <input type="text" name="descripcion"/><br/>
+
+    <label for="monto">Monto </label>
+    <input type="text" name="monto"/> <br/>
+    
+    <label for="listaTipoMovimientos"> Tipos de movimientos </label>
+    <select>
+        <option value="null" name="listaTipoMovimientos"> Seleccione un Tipo de Movimiento</option>
+        <option *ngFor="let tipoMovimiento of listTipoMovimiento" value="tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
+    </select><br/>
+
+    <label for="listaSubTipoMovimientos"> Subtipos de movimientos </label>
+    <select>
+        <option value="null" name="listaSubTipoMovimientos"> Seleccione un Subtipo de Movimiento</option>
+        <option *ngFor="let subTipoMovimiento of listSubTipoMovimiento" value="subTipoMovimiento.id">{{subTipoMovimiento.descripcion}}</option>
+    </select><br/>
+    
+    <label for="listaTipoPagos"> Tipos de movimientos </label>
+    <select>
+        <option value="null" name="listaTipoPagos"> Seleccione un Tipo de Pago</option>
+        <option *ngFor="let tipoPago of listTipoPago" value="tipoPago.id">{{tipoPago.descripcion}}</option>
+    </select><br/>
+
+    <label for="listaMonedas"> Tipos de monedas </label>
+    <select>
+        <option value="null" name="listaMonedas"> Seleccione una moneda</option>
+        <option *ngFor="let moneda of listMoneda" value="moneda.id">{{moneda.descripcion}}</option>
+    </select><br/>
+
+    <input type="submit" value="Guardar movimiento"/>
+</form>
+
+</div>

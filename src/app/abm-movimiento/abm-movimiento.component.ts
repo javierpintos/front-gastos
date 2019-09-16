@@ -1,45 +1,40 @@
 import { Component, OnInit, QueryList } from '@angular/core';
-import { Moneda } from './Model/Moneda.model';
-import { TipoMovimiento } from './Model/TipoMovimiento.model';
-import { SubTipoMovimiento } from './Model/SubTipoMovimiento.model';
-import { TipoPago } from './Model/TipoPago.model';
-import { MovimientosService } from './Service/movimientos.service';
+import { Moneda } from '../Model/Moneda.model';
+import { TipoMovimiento } from '../Model/TipoMovimiento.model';
+import { SubTipoMovimiento } from '../Model/SubTipoMovimiento.model';
+import { TipoPago } from '../Model/TipoPago.model';
+import { MovimientosService } from '../Service/movimientos.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [MovimientosService]
+  selector: 'app-abm-movimiento',
+  templateUrl: './abm-movimiento.component.html',
+  styleUrls: ['./abm-movimiento.component.css']
 })
-export class AppComponent implements OnInit {
+export class AbmMovimientoComponent implements OnInit {
   title = 'java-front';
-  public new_user: any;
-  public usuario_guardado;
-
-  public newMoneda: any;
-  public moneda_guardada;
+  public newMovimiento: any;
+  public movimiento_guardado;
 
   public listTipoMovimiento: TipoMovimiento;
   public listSubTipoMovimiento: SubTipoMovimiento;
   public listTipoPago: TipoPago;
   public listMoneda: Moneda;
 
-  /*constructor(
-    private _movimientosService: MovimientosService
-  ) { 
-    this.new_user = {
-      "name": "",
-      "job": ""
-  };
-  }*/
-
   constructor(
     private _movimientosService: MovimientosService
   ) { 
-    this.newMoneda = {
-      //"id": "",
+    this.newMovimiento = {
+      "fecha": "",
+      "fechaVencimiento": "",
+      "monto": "",
       "descripcion": "",
-      "cotizacion": ""
+      "TipoMovimiento": "",
+      "subTipoMovimiento": "",
+      "cotizacion": "",
+      "moneda": "",
+      "tipoPago": "",
+      "cliente": "",
+      "proveedor": ""
   };
   }
 
@@ -57,45 +52,28 @@ export class AppComponent implements OnInit {
     this._movimientosService.getSubTipoMovimientos().subscribe((resultado) => {
       if (resultado) {
         this.listSubTipoMovimiento = resultado;
-        //console.log(resultado)
       }
     });
 
     this._movimientosService.getTipoPagos().subscribe((resultado) => {
       if (resultado) {
         this.listTipoPago = resultado;
-        //console.log(resultado)
       }
     });
 
     this._movimientosService.getMonedas().subscribe((resultado) => {
       if (resultado) {
         this.listMoneda = resultado;
-        //console.log(resultado)
       }
     });
   }
 
-  onSubmitMovimiento(newMovimiento){
+  onSubmitMovimiento(form){
 
     this._movimientosService.addMovimiento(this.newMovimiento).subscribe(
       response => {
-        console.log("ingreso a addMovimiento");
-        //form.reset();
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
-
-  }
-
-  onSubmit(form){
-
-    this._movimientosService.addMoneda(this.newMoneda).subscribe(
-      response => {
-        this.moneda_guardada = response;
-        console.log(this.moneda_guardada);
+        this.movimiento_guardado = response;
+        console.log(this.movimiento_guardado);
         form.reset();
       },
       error => {
@@ -106,7 +84,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  /*onSubmit(form){
+  /*onSubmit(form){onSubmitMovimiento
 
     this._movimientosService.addUser(this.new_user).subscribe(
       response => {

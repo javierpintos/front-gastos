@@ -1,0 +1,40 @@
+
+<h2>Agregar moneda</h2>
+<form #formMoneda="ngForm" (ngSubmit)="onSubmit(formMoneda)">
+
+  
+  <p>
+		<label for="id">Id</label>
+		<input type="text" name="id" #id="ngModel" [(ngModel)]="newMoneda.id" required/>
+		<span *ngIf="id.touched && !id.valid">
+			El id no es valido
+		</span>
+	</p>
+
+	<p>
+		<label for="descripcion">Descripcion</label>
+		<input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="newMoneda.descripcion" required/>
+		<span *ngIf="descripcion.touched && !descripcion.valid">
+			La descripcion no es valida
+		</span>
+  </p>
+  
+  <p>
+		<label for="cotizacion">Cotizacion</label>
+		<input type="text" name="cotizacion" #cotizacion="ngModel" [(ngModel)]="newMoneda.cotizacion" required/>
+		<span *ngIf="cotizacion.touched && !cotizacion.valid">
+			La cotizacion no es valida
+		</span>
+	</p>
+
+	<input type="submit" value="Guardar moneda" [disabled]="!formMoneda.form.valid"> 
+
+</form>
+
+<div *ngIf="moneda_guardada">
+        <h2>El moneda se ha guardado correctamente</h2>
+        <h3>{{moneda_guardada.id}}</h3>
+        <h3>{{moneda_guardada.descripcion}}</h3>
+        <h3>{{moneda_guardada.cotizacion}}</h3>
+        
+</div>

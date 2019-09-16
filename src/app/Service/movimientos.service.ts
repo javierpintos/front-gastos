@@ -37,6 +37,35 @@ export class MovimientosService {
 
 		return this._http.post(this.url + 'monedas', params, {headers: headers});
     }
+
+    addMovimiento(newMovimiento): Observable<any>{
+		let params = JSON.stringify(newMovimiento);
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+		return this._http.post(this.url + 'movimientos', params, {headers: headers});
+    }
+
+    addTipoPago(newTipoPago): Observable<any>{
+		let params = JSON.stringify(newTipoPago);
+		let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+		return this._http.post(this.url + 'tipoPagos', params, {headers: headers});
+    }
+
+    addTipoMovimiento(newTipMovimiento): Observable<any>{
+      let params = JSON.stringify(newTipMovimiento);
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+  
+      return this._http.post(this.url + 'tipoMovimientos', params, {headers: headers});
+    }
+
+    addSubTipoMovimiento(newSubTipMovimiento): Observable<any>{
+      let params = JSON.stringify(newSubTipMovimiento);
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+  
+      return this._http.post(this.url + 'subTipoMovimientos', params, {headers: headers});
+    }
+    
     
     /*addUser(user): Observable<any>{
 		let params = JSON.stringify(user);

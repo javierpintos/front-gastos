@@ -1,0 +1,30 @@
+<h2>Agregar Tipo de Movimiento</h2>
+<form #formTipoMovimiento="ngForm" (ngSubmit)="onSubmit(formTipoMovimiento)">
+
+  
+  <p>
+		<label for="id">Id</label>
+		<input type="text" name="id" #id="ngModel" [(ngModel)]="newTipoMovimiento.id" required/>
+		<span *ngIf="id.touched && !id.valid">
+			El id no es valido
+		</span>
+	</p>
+
+	<p>
+		<label for="descripcion">Descripcion</label>
+		<input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="newTipoMovimiento.descripcion" required/>
+		<span *ngIf="descripcion.touched && !descripcion.valid">
+			La descripcion no es valida
+		</span>
+  </p>
+  
+	<input type="submit" value="Guardar tipo de movimiento" [disabled]="!formTipoMovimiento.form.valid"> 
+
+</form>
+
+<div *ngIf="tipoMovimiento_guardado">
+        <h2>El Tipo de pago se ha guardado correctamente</h2>
+        <h2>{{tipoMovimiento_guardado.id}}</h2>
+        <h2>{{tipoMovimiento_guardado.descripcion}}</h2>
+        
+</div>
