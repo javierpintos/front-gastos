@@ -1,20 +1,119 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>
+  Prueba de endpoint en JAVA
+</h1>
+<hr>
+<h2>Agregar Movimiento</h2>
 
+<form #formContacto="ngForm" (ngSubmit)="onSubmit(newMovimiento)">
+    <label for="descripcion">Descripcion </label> 
+    <input type="text" name="descripcion"/><br/>
+
+    <label for="monto">Monto </label>
+    <input type="text" name="monto"/> <br/>
+   
+    <label for="listaTipoMovimientos"> Tipos de movimientos </label>
+    <select>
+      <option value="null" name="listaTipoMovimientos"> Seleccione un Tipo de Movimiento</option>
+      <option *ngFor="let tipoMovimiento of listTipoMovimiento" value="tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
+    </select><br/>
+
+    <label for="listaSubTipoMovimientos"> Subtipos de movimientos </label>
+    <select>
+      <option value="null" name="listaSubTipoMovimientos"> Seleccione un Subtipo de Movimiento</option>
+      <option *ngFor="let subTipoMovimiento of listSubTipoMovimiento" value="subTipoMovimiento.id">{{subTipoMovimiento.descripcion}}</option>
+    </select><br/>
+    
+    <label for="listaTipoPagos"> Tipos de movimientos </label>
+    <select>
+      <option value="null" name="listaTipoPagos"> Seleccione un Tipo de Pago</option>
+      <option *ngFor="let tipoPago of listTipoPago" value="tipoPago.id">{{tipoPago.descripcion}}</option>
+    </select><br/>
+
+    <label for="listaMonedas"> Tipos de monedas </label>
+    <select>
+      <option value="null" name="listaMonedas"> Seleccione una moneda</option>
+      <option *ngFor="let moneda of listMoneda" value="moneda.id">{{moneda.descripcion}}</option>
+    </select><br/>
+
+    <input type="submit" value="Enviar"/>
+</form>
+
+<hr>
+
+
+
+
+<h2>Crear moneda</h2>
+<form #newMoneda="ngForm" (ngSubmit)="onSubmit(newMoneda)">
+
+  <!--
+  <p>
+		<label for="id">Id</label>
+		<input type="text" name="id" #id="ngModel" [(ngModel)]="newMoneda.id" required/>
+		<span *ngIf="id.touched && !id.valid">
+			El id no es valido
+		</span>
+	</p>-->
+
+	<p>
+		<label for="descripcion">Descripcion</label>
+		<input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="newMoneda.descripcion" required/>
+		<span *ngIf="descripcion.touched && !descripcion.valid">
+			La descripcion no es valida
+		</span>
+  </p>
+  
+  <p>
+		<label for="cotizacion">Cotizacion</label>
+		<input type="text" name="cotizacion" #cotizacion="ngModel" [(ngModel)]="newMoneda.cotizacion" required/>
+		<span *ngIf="cotizacion.touched && !cotizacion.valid">
+			La cotizacion no es valida
+		</span>
+	</p>
+
+	<input type="submit" value="Guardar moneda" [disabled]="!newMoneda.form.valid"> 
+
+</form>
+
+<div *ngIf="moneda_guardada">
+	<h2>El moneda se ha guardado correctamente</h2>
+	<h3>{{moneda_guardada.id}}</h3>
+	<h3>{{moneda_guardada.descripcion}}</h3>
+	<h3>{{moneda_guardada.cotizacion}}</h3>
+	
+</div>
+
+
+
+
+
+
+<!--
+<h2>Crear usuario reqres.in</h2>
+<form #newUser="ngForm" (ngSubmit)="onSubmit(newUser)">
+
+	<p>
+		<label for="name">Nombre</label>
+		<input type="text" name="name" #name="ngModel" [(ngModel)]="new_user.name" required/>
+		<span *ngIf="name.touched && !name.valid">
+			El nombre no es valido
+		</span>
+	</p>
+
+	<p>
+		<label for="job">Trabajo</label>
+		<input type="text" name="job" #job="ngModel" [(ngModel)]="new_user.job" required/>
+		<span *ngIf="job.touched && !job.valid">
+			El trabajo no es valido
+		</span>
+	</p>
+
+	<input type="submit" value="Guardar usuario" [disabled]="!newUser.form.valid"> 
+
+</form>
+
+<div *ngIf="usuario_guardado">
+	<h2>El usuario se ha guardado correctamente</h2>
+	<h3>{{usuario_guardado.name}}</h3>
+	<h4>{{usuario_guardado.job}}</h4>
+</div>-->
